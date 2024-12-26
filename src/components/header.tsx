@@ -10,10 +10,10 @@ const Header = () => {
 
   const navItems = "px-[20px] py-[16px] rounded-[10px]";
   return (
-    <header className="flex justify-between items-center w-full max-w-[1920px] pl-[7.7%] pr-[2%] h-[80px]">
+    <header className="flex justify-between items-center w-full max-w-[1920px] pl-[7.7%] pr-[2%] h-[80px] bg-white z-10 absolute top-0 left-0">
       <Image src="/asset/Logo.png" width={320} height={80} alt="logo" />
       <nav>
-        <ul className="flex gap-[50px]">
+        <ul className="flex gap-[30px]">
           <Link href="/">
             <li className={`${navItems} ${isActive("/")}`}>Home</li>
           </Link>
@@ -28,9 +28,11 @@ const Header = () => {
           </Link>
         </ul>
       </nav>
-      <div className="flex gap-[55px]">
+      <div className="flex gap-[20px]">
         <Button>Sign in</Button>
-        <Button>Sign up</Button>
+        <Button customClass="bg-[var(--sub-color)] text-[var(--primary-color)]">
+          Sign up
+        </Button>
       </div>
     </header>
   );
