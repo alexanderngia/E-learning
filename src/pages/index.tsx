@@ -3,13 +3,14 @@ import Image from "next/image";
 const Home = () => {
   return (
     <div className="flex flex-col items-center w-full max-w-[1920px] relative">
-      <div className="w-full relative px-[10%] py-[13%]">
+      <div className="w-full h-screen relative px-[10%] py-[13%]">
         <Image
           src="/asset/hero-img.jpg"
           width={1920}
           height={1080}
           alt="hero image"
           className="absolute top-0 left-0 z-0"
+          priority
         />
         <div className="flex flex-col z-1 absolute gap-[20px]">
           <p className="text-[50px] text-white font-bold drop-shadow-3xl leading-none">
