@@ -59,10 +59,10 @@ const Course = () => {
         layout="responsive"
         width={1920}
         height={6086}
-        className="object-cover absolute top-0 left-0 z-0"
+        className="object-cover absolute top-0 left-0 z-0 w-full"
         priority
       />
-      <div className="flex flex-col h-screen w-screen items-center justify-center relative">
+      <div className="flex flex-col h-screen w-full items-center justify-center relative">
         <h1 className="text-[var(--primary-color)] text-[125px] z-10 font-black">
           Euréka
         </h1>
@@ -77,7 +77,7 @@ const Course = () => {
           className=" absolute bottom-0 right-0 z-10"
         />
       </div>
-      <div className="flex flex-col h-screen w-screen items-center justify-center relative">
+      <div className="flex flex-col h-screen w-full items-center justify-center relative">
         <p className="text-white text-[50px] z-10 font-normal">Explore Your</p>
         <h2 className="text-white text-[125px] z-10 font-black leading-none">
           Creativity
@@ -95,7 +95,7 @@ const Course = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col bg-white w-screen items-center justify-center relative pt-10 pl-10 pr-10 pb-[120px] gap-20">
+      <div className="flex flex-col bg-white w-full items-center justify-center relative pt-10 pl-10 pr-10 pb-[120px] gap-20">
         <div className="flex justify-center items-center w-full gap-5">
           <Image
             src="/asset/course-number.png"
