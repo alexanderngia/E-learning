@@ -39,7 +39,7 @@ const Form: React.FC<FormProps> = ({ onClickClose, signUp }) => {
 
   return (
     <div
-      className={`flex flex-col text-white rounded-[24px] text-[20px] lg:w-[400px]  3xl:w-[520px] 3xl:h-[520px] absolute top-[80px] shadow-sm shadow-gray-500 ${
+      className={`flex flex-col text-white rounded-[24px] text-[20px] lg:w-[400px] absolute top-[80px] shadow-sm shadow-gray-500 ${
         signUp ? "right-[0px]" : "right-[80px]"
       } bg-white p-10`}
     >

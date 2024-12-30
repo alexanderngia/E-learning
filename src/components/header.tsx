@@ -48,10 +48,17 @@ const Header = () => {
       <div className="flex gap-[20px] relative">
         {pathname !== "/account" && (
           <>
-            <Button onClick={() => setopenForm(true)}>Sign in</Button>
             <Button
               onClick={() => {
-                setopenForm(true);
+                setopenForm(!openForm);
+                setOpenFormSignUp(false);
+              }}
+            >
+              Sign in
+            </Button>
+            <Button
+              onClick={() => {
+                setopenForm(!openForm);
                 setOpenFormSignUp(true);
               }}
             >
