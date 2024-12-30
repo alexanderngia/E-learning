@@ -3,7 +3,7 @@ import Image from "next/image";
 const Home = () => {
   return (
     <div className="flex flex-col items-center w-full max-w-[1920px] relative">
-      <div className="w-full h-screen relative px-[10%] py-[13%]">
+      <div className="w-full h-screen relative px-[10%] py-[19%]">
         <Image
           src="/asset/hero-img.jpg"
           width={1920}

@@ -6,7 +6,9 @@ import { useRouter } from "next/router";
 const Header = () => {
   const { pathname } = useRouter();
   const isActive = (path: string) =>
-    pathname === path ? "bg-[var(--primary-color)] text-white" : "";
+    pathname === path
+      ? "bg-[var(--primary-color)] text-white hover:bg-[var(--sub-color)]"
+      : "hover:bg-[var(--sub-color)] hover:text-white";
 
   const navItems = "px-[20px] py-[16px] rounded-[10px]";
   return (
@@ -30,9 +32,7 @@ const Header = () => {
       </nav>
       <div className="flex gap-[20px]">
         <Button>Sign in</Button>
-        <Button customClass="bg-[var(--sub-color)] text-[var(--primary-color)]">
-          Sign up
-        </Button>
+        <Button>Sign up</Button>
       </div>
     </header>
   );
