@@ -1,6 +1,13 @@
 import Button from "@/components/button";
 import Image from "next/image";
+import { useRouter } from "next/router";
 const Home = () => {
+  const router = typeof window !== "undefined" ? useRouter() : null;
+  const navigateToPage = () => {
+    if (router) {
+      router.push("/course"); // Replace "/target-page" with the desired route
+    }
+  };
   return (
     <div className="flex flex-col items-center w-full max-w-[1920px] relative">
       <div className="w-full h-screen relative px-[10%] py-[19%]">
@@ -24,7 +31,10 @@ const Home = () => {
             not only teach you how to use the tools, but also inspire you to
             create your own unique designs.
           </p>
-          <Button customClass="w-[285px] text-[32px] rounded-[56px] py-[12px]">
+          <Button
+            onClick={navigateToPage}
+            customClass="w-[285px] text-[32px] rounded-[56px] py-[12px]"
+          >
             enroll now!
           </Button>
         </div>
