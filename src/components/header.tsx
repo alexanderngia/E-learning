@@ -18,7 +18,7 @@ const Header = () => {
 
   const navItems = "px-[20px] py-[16px] rounded-[10px]";
   return (
-    <header className="flex justify-between items-center w-full max-w-[1920px] pl-[7.7%] pr-[2%] h-[80px] bg-white z-10 absolute top-0 left-0">
+    <header className="flex justify-between items-center w-full pl-[7.7%] pr-[2%] h-[80px] bg-white z-10 absolute top-0 left-0">
       <Link href="/">
         <Image
           src="/asset/Logo.png"

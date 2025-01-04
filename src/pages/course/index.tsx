@@ -1,4 +1,4 @@
-import Card from "@/components/card";
+import { Card } from "@/components/card";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -51,6 +51,9 @@ const Course = () => {
       if (scrollInterval) clearInterval(scrollInterval);
     };
   }, [isHovered]);
+  const classHeadTeacher = `bg-white w-[50%] 2xl:max-w-[332px] 2xl:max-h-[332px] rounded-full absolute -top-[33%] 3xl:-top-[45%] lg:-top-[30%] right-[25%] 2xl:right-[26%]`;
+  const classBodyTeacher = `bg-white w-[20vw] h-[35vh] lg:w-[20vw] lg:h-[40vh] 3xl:w-[540px] 3xl:h-[540px] lg:rounded-[12%] 2xl:rounded-[15%]`;
+
   return (
     <div className="flex flex-col items-center w-full max-w-[1920px] gap-[100px]">
       <Image
@@ -62,19 +65,26 @@ const Course = () => {
         className="object-cover absolute top-0 left-0 z-0 w-full"
         priority
       />
-      <div className="flex flex-col h-screen w-full items-center justify-center relative">
-        <h1 className="text-[var(--primary-color)] text-[125px] z-10 font-black">
+      <div className="flex flex-col h-[800px] w-full items-center justify-center relative ">
+        <h1 className="text-[#b484de] text-[125px] z-10 font-black leading-none drop-shadow-5xl font-sans">
           Euréka
         </h1>
-        <p className="text-white text-[50px] z-10 font-bold">
+        <p className="text-white text-[50px] z-10 font-bold drop-shadow-5xl">
           Unlock Potential, Create Differently!
         </p>
         <Image
-          src="/asset/bg-course-hero.png"
+          src="/asset/course-earth.png"
           alt="background image"
-          width={484} // Kích thước gốc của ảnh
-          height={484} // Kích thước gốc của ảnh
-          className=" absolute bottom-0 right-0 z-10"
+          width={600} // Kích thước gốc của ảnh
+          height={859} // Kích thước gốc của ảnh
+          className=" absolute top-[10%] mx-auto z-1"
+        />
+        <Image
+          src="/asset/course-rocket.png"
+          alt="background image"
+          width={272} // Kích thước gốc của ảnh
+          height={212} // Kích thước gốc của ảnh
+          className=" absolute top-[35%] 2xl:right-[12%] right-[2%] z-10"
         />
       </div>
       <div className="flex flex-col h-screen w-full items-center justify-center relative">
@@ -145,6 +155,98 @@ const Course = () => {
             <br></br>Connect, share ideas, and collaborate with fellow
             designers.
           </p>
+        </div>
+      </div>
+      <div className="flex flex-col pt-[15vh] 2xl:pt-[30vh] w-full items-center justify-center relative">
+        <div className="w-[218px] 2xl:w-[268px] absolute top-[17%] left-0 z-0">
+          <Image
+            src="/asset/course-teacher-1.png"
+            alt="background image"
+            width={268}
+            height={265}
+            layout="responsive"
+            className="object-contain "
+          />
+        </div>
+        <div className="w-[131px] 2xl:w-[181px] absolute -top-[3%] left-[26%] z-0">
+          <Image
+            src="/asset/course-teacher-2.png"
+            alt="background image"
+            width={181}
+            height={185}
+            layout="responsive"
+            className="object-contain"
+          />
+        </div>
+        <div className=" w-[88px] 2xl:w-[138px] absolute top-[2%] right-[26%] z-0">
+          <Image
+            src="/asset/course-teacher-3.png"
+            alt="background image"
+            width={138}
+            height={145}
+            layout="responsive"
+            className="object-contain"
+          />
+        </div>
+        <div className="w-[155px] 2xl:w-[205px] absolute top-[20%] right-10 z-0">
+          <Image
+            src="/asset/course-teacher-4.png"
+            alt="background image"
+            width={205}
+            height={208}
+            layout="responsive"
+            className="object-contain"
+          />
+        </div>
+        <h3 className="text-white text-[64px] z-10 font-black leading-none">
+          OUR TEACHING STAFFS
+        </h3>
+        <div className="w-full flex items-end justify-center gap-10 3xl:h-[900px] lg:h-[500px]">
+          <div className="relative">
+            <div className={`${classHeadTeacher} `}>
+              <Image
+                src="/asset/course-number.png"
+                alt="background image"
+                layout="responsive"
+                width={1920}
+                height={6086}
+                className="object-cover  top-0 left-0 z-0 w-full"
+                priority
+              />
+            </div>
+            <div className={`${classBodyTeacher} `}></div>
+          </div>
+          <div className="relative">
+            <div className={`${classHeadTeacher} `}>
+              <Image
+                src="/asset/course-number.png"
+                alt="background image"
+                layout="responsive"
+                width={1920}
+                height={6086}
+                className="object-cover  top-0 left-0 z-0 w-full"
+                priority
+              />
+            </div>
+
+            <div className={`${classBodyTeacher} `}></div>
+          </div>
+
+          <div className="relative">
+            <div className={`${classHeadTeacher} `}>
+              <Image
+                src="/asset/course-number.png"
+                alt="background image"
+                layout="responsive"
+                width={1920}
+                height={6086}
+                className="object-cover  top-0 left-0 z-0 w-full"
+                priority
+              />
+            </div>
+
+            <div className={`${classBodyTeacher} `}></div>
+          </div>
         </div>
       </div>
     </div>

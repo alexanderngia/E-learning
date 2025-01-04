@@ -14,10 +14,14 @@ export default {
       dropShadow: {
         "3xl": "8px -4px 4px rgba(0, 0, 0, 0.25)",
         "4xl": "16px -4px 4px rgba(0, 0, 0, 0.25)",
+        "5xl": "4px 10px 0px #000000",
       },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+      },
+      fontFamily: {
+        montserrat: ["var(--font-montserrat)", "sans-serif"],
       },
     },
   },
