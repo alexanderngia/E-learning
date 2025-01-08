@@ -46,3 +46,10 @@ body {
 .slick-dots.custom-dots .slick-active div {
   width: 40px;
 }
+.custom-arrow.slick-arrow::before {
+  display: none;
+}
+
+.custom-review .slick-slider {
+  height: 500px;
+}

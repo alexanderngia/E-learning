@@ -1,7 +1,10 @@
+"use client";
 import { Card } from "@/components/card";
+import { CarouselReview } from "@/components/carousel";
+import InputComponent from "@/components/input";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-
+import { v4 as uuidv4 } from "uuid";
 const data = [
   {
     img: "/asset/cousrse-1.png",
@@ -23,14 +26,111 @@ const data = [
   },
 ];
 
+const dataTeacher = [
+  {
+    img: "/asset/course-number.png",
+    name: "Huy Poster",
+    desc: "Designer/Influencer",
+  },
+  {
+    img: "/asset/course-number.png",
+    name: "Royce Truong",
+    desc: "Designer/VFX/Motion",
+  },
+  {
+    img: "/asset/course-number.png",
+    name: "Alexander Nguyen",
+    desc: "Developer",
+  },
+];
+
+const reviewData = [
+  {
+    img: "/asset/course-number.png",
+    name: "Huy Poster",
+    course: "Graduated Basic Course",
+    desc: "This course is truly amazing! I’ve learned so many foundational concepts and how to apply them in practice. The instructors explain everything clearly and are very supportive.",
+  },
+  {
+    img: "/asset/course-number.png",
+    name: "Khoa Poster",
+    course: "Graduated Basic Course",
+    desc: "The practical exercises are incredibly helpful. Thanks to them, I’ve improved my skills and added some great pieces to my portfolio.",
+  },
+  {
+    img: "/asset/course-number.png",
+    name: "Huy Poster",
+    course: "Graduated Basic Course",
+    desc: "This course is truly amazing! I’ve learned so many foundational concepts and how to apply them in practice. The instructors explain everything clearly and are very supportive.",
+  },
+  {
+    img: "/asset/course-number.png",
+    name: "Khoa Poster",
+    course: "Graduated Basic Course",
+    desc: "The practical exercises are incredibly helpful. Thanks to them, I’ve improved my skills and added some great pieces to my portfolio.",
+  },
+  {
+    img: "/asset/course-number.png",
+    name: "Huy Poster",
+    course: "Graduated Basic Course",
+    desc: "This course is truly amazing! I’ve learned so many foundational concepts and how to apply them in practice. The instructors explain everything clearly and are very supportive.",
+  },
+  {
+    img: "/asset/course-number.png",
+    name: "Khoa Poster",
+    course: "Graduated Basic Course",
+    desc: "The practical exercises are incredibly helpful. Thanks to them, I’ve improved my skills and added some great pieces to my portfolio.",
+  },
+  {
+    img: "/asset/course-number.png",
+    name: "Huy Poster",
+    course: "Graduated Basic Course",
+    desc: "This course is truly amazing! I’ve learned so many foundational concepts and how to apply them in practice. The instructors explain everything clearly and are very supportive.",
+  },
+  {
+    img: "/asset/course-number.png",
+    name: "Khoa Poster",
+    course: "Graduated Basic Course",
+    desc: "The practical exercises are incredibly helpful. Thanks to them, I’ve improved my skills and added some great pieces to my portfolio.",
+  },
+  {
+    img: "/asset/course-number.png",
+    name: "Huy Poster",
+    course: "Graduated Basic Course",
+    desc: "This course is truly amazing! I’ve learned so many foundational concepts and how to apply them in practice. The instructors explain everything clearly and are very supportive.",
+  },
+  {
+    img: "/asset/course-number.png",
+    name: "Khoa Poster",
+    course: "Graduated Basic Course",
+    desc: "The practical exercises are incredibly helpful. Thanks to them, I’ve improved my skills and added some great pieces to my portfolio.",
+  },
+  {
+    img: "/asset/course-number.png",
+    name: "Huy Poster",
+    course: "Graduated Basic Course",
+    desc: "This course is truly amazing! I’ve learned so many foundational concepts and how to apply them in practice. The instructors explain everything clearly and are very supportive.",
+  },
+  {
+    img: "/asset/course-number.png",
+    name: "Khoa Poster",
+    course: "Graduated Basic Course",
+    desc: "The practical exercises are incredibly helpful. Thanks to them, I’ve improved my skills and added some great pieces to my portfolio.",
+  },
+];
+
 const Course = () => {
   const carouselRef = useRef<HTMLDivElement | null>(null);
+  const carouselRefTeacher = useRef<HTMLDivElement | null>(null);
+
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     let scrollInterval: NodeJS.Timeout | undefined;
 
-    const startAutoScroll = () => {
+    const startAutoScroll = (
+      carouselRef: React.RefObject<HTMLDivElement | null>
+    ) => {
       scrollInterval = setInterval(() => {
         if (carouselRef.current) {
           const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
@@ -44,16 +144,17 @@ const Course = () => {
     };
 
     if (!isHovered) {
-      startAutoScroll();
+      startAutoScroll(carouselRef);
+      startAutoScroll(carouselRefTeacher);
     }
 
     return () => {
       if (scrollInterval) clearInterval(scrollInterval);
     };
   }, [isHovered]);
-  const classHeadTeacher = `bg-white w-[50%] 2xl:max-w-[332px] 2xl:max-h-[332px] rounded-full absolute -top-[33%] 3xl:-top-[45%] lg:-top-[30%] right-[25%] 2xl:right-[26%]`;
-  const classBodyTeacher = `bg-white w-[20vw] h-[35vh] lg:w-[20vw] lg:h-[40vh] 3xl:w-[540px] 3xl:h-[540px] lg:rounded-[12%] 2xl:rounded-[15%]`;
 
+  const classHeadTeacher = `w-[332px] h-[332px] rounded-full -mb-[80px] z-10`;
+  const classBodyTeacher = `flex items-center justify-center text-center flex-col bg-white w-[540px] h-[300px] rounded-[80px] pt-[80px]`;
   return (
     <div className="flex flex-col items-center w-full max-w-[1920px] gap-[100px]">
       <Image
@@ -65,7 +166,7 @@ const Course = () => {
         className="object-cover absolute top-0 left-0 z-0 w-full"
         priority
       />
-      <div className="flex flex-col h-[800px] w-full items-center justify-center relative ">
+      <div className="flex flex-col h-[800px] w-full items-center justify-center relative gap-9">
         <h1 className="text-[#b484de] text-[125px] z-10 font-black leading-none drop-shadow-5xl font-sans">
           Euréka
         </h1>
@@ -75,23 +176,134 @@ const Course = () => {
         <Image
           src="/asset/course-earth.png"
           alt="background image"
-          width={600} // Kích thước gốc của ảnh
-          height={859} // Kích thước gốc của ảnh
-          className=" absolute top-[10%] mx-auto z-1"
+          width={600}
+          height={859}
+          className=" absolute top-[6%] mx-auto z-1"
         />
         <Image
           src="/asset/course-rocket.png"
           alt="background image"
-          width={272} // Kích thước gốc của ảnh
-          height={212} // Kích thước gốc của ảnh
+          width={272}
+          height={212}
           className=" absolute top-[35%] 2xl:right-[12%] right-[2%] z-10"
         />
+        <InputComponent />
       </div>
-      <div className="flex flex-col h-screen w-full items-center justify-center relative">
-        <p className="text-white text-[50px] z-10 font-normal">Explore Your</p>
-        <h2 className="text-white text-[125px] z-10 font-black leading-none">
-          Creativity
-        </h2>
+      <div className="flex items-center justify-center w-full relative gap-[100px]">
+        <p className="font-normal text-white text-5xl text-center leading-none">
+          <span className="font-bold">
+            +300
+            <br />
+          </span>
+          <span className="font-medium text-[32px]">Fresh Learners</span>
+        </p>
+        <svg
+          className="w-[5px] h-full"
+          width="5"
+          height="150"
+          viewBox="0 0 5 150"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <line
+            x1="2.5"
+            y1="1.09278e-07"
+            x2="2.49999"
+            y2="150"
+            stroke="white"
+            strokeWidth="5"
+          />
+        </svg>
+        <p className=" font-normal text-white text-5xl text-center leading-none">
+          <span className="font-bold">
+            +9 <br />
+          </span>
+          <span className="font-medium text-[32px]">Years of Experience</span>
+        </p>
+        <svg
+          className="w-[5px] h-full"
+          width="5"
+          height="150"
+          viewBox="0 0 5 150"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <line
+            x1="2.5"
+            y1="1.09278e-07"
+            x2="2.49999"
+            y2="150"
+            stroke="white"
+            strokeWidth="5"
+          />
+        </svg>
+        <p className="font-normal text-white text-5xl text-center tracking-[0] leading-none">
+          <span className="font-bold">
+            30+
+            <br />
+          </span>
+
+          <span className="font-medium text-[32px]">Brand Partners</span>
+        </p>
+      </div>
+      <div className="flex flex-col pt-[15vh] 2xl:pt-[10vh] w-full items-center justify-center relative">
+        <h3 className="text-white text-[64px] z-10 font-bold leading-none">
+          MEET OUR TEACHING STAFFS
+        </h3>
+        <div className="overflow-auto w-full flex">
+          <div className="w-full flex items-end justify-start gap-10 h-[700px]">
+            <div
+              ref={carouselRefTeacher}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              className=" relative flex gap-10 w-full h-full overflow-auto course-custom pb-10"
+            >
+              {[...dataTeacher, ...dataTeacher].map(
+                ({ img, name, desc }, index) => {
+                  return (
+                    <div
+                      key={uuidv4()}
+                      className="relative flex flex-col items-center justify-end hover:scale-105 transition-transform duration-300 transform cursor-pointer"
+                    >
+                      <div className={`${classHeadTeacher} `}>
+                        <Image
+                          src={img}
+                          alt="background image"
+                          layout="responsive"
+                          width={333}
+                          height={333}
+                          className="object-cover top-0 left-0 z-0 w-full"
+                          priority
+                        />
+                      </div>
+
+                      <div className={`${classBodyTeacher} `}>
+                        <h3 className="text-[36px] font-bold">{name}</h3>
+                        <p className="text-[20px]">{desc}</p>
+                        <p className="flex items-center justify-center w-[100px] text-[36px] font-bold gap-1">
+                          5.0
+                          <Image
+                            src="/asset/star.png"
+                            alt="background image"
+                            layout="responsive"
+                            width={30}
+                            height={30}
+                            className="!w-[30px] !h-[30px]"
+                          />
+                        </p>
+                      </div>
+                    </div>
+                  );
+                }
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col h-[1000px] w-full items-center justify-center relative gap-5">
+        <h3 className="text-white text-[64px] z-10 font-bold leading-none">
+          MOST POPULAR COURSES
+        </h3>
         <div
           ref={carouselRef}
           onMouseEnter={() => setIsHovered(true)}
@@ -100,153 +312,54 @@ const Course = () => {
         >
           <div className="flex gap-[40px] justify-center px-[60px] ">
             {[...data, ...data].map(({ img }, index) => (
-              <Card key={index} img={img} />
+              <Card key={uuidv4()} img={img} />
             ))}
           </div>
         </div>
       </div>
-      <div className="flex flex-col bg-white w-full items-center justify-center relative pt-10 pl-10 pr-10 pb-[120px] gap-20">
+      <div className="flex flex-col h-[600px] w-full items-center justify-center relative gap-[100px]">
+        <h3 className="text-white text-[64px] z-10 font-bold leading-none">
+          REVIEW FROM LEARNERS
+        </h3>
+
+        <CarouselReview data={reviewData} />
+      </div>
+      <div className="flex flex-col bg-white w-full items-center justify-center relative p-[80px] pb-[120px] gap-20">
         <div className="flex justify-center items-center w-full gap-5">
-          <Image
-            src="/asset/course-number.png"
-            width={108}
-            height={110}
-            alt="number image"
-          />
+          <div className="w-[110px] h-[110px] rounded-full bg-[var(--primary-color)] flex items-center justify-center">
+            <p className="text-[64px] text-white font-extrabold">3</p>
+          </div>
           <h2 className=" text-[40px] z-10 font-black">
             THINGS THAT EURÉKA WILL BRING TO YOU
           </h2>
         </div>
-        <div className="flex justify-center items-center w-full gap-5">
-          <p className=" text-[32px] text-center font-semibold w-[556px]">
+        <div className="flex flex-col justify-center items-center w-full gap-[50px]">
+          <p className=" text-[32px] text-center font-semibold w-[80%]">
             <span className="text-[var(--primary-color)] font-extrabold">
-              Ignite Creativity
+              Personalized Learning Paths:
             </span>
-            <br></br>Discover your unique style and unleash your creative
-            potential.
+            <br></br>Euréka designs flexible learning paths tailored to each
+            student’s goals, strengths, and pace. This ensures optimal skill
+            development that aligns with their specific needs.
           </p>
-        </div>
-        <div className="flex justify-center items-center w-full gap-[170px]">
-          <p className=" text-[32px] text-center font-semibold w-[556px]">
-            <span className="text-[var(--primary-color)] font-extrabold">
-              Learn Your Way
-            </span>
-            <br></br>Flexible courses tailored to your pace and goals.
-          </p>
-          <p className=" text-[32px] text-center font-semibold w-[556px]">
-            <span className="text-[var(--primary-color)] font-extrabold">
-              Expert Guidance
-            </span>
-            <br></br>Get support and feedback from industry-leading mentors.
-          </p>
-        </div>
-        <div className="flex justify-center items-center w-full gap-[60px]">
-          <p className=" text-[32px] text-center font-semibold w-[556px]">
-            <span className="text-[var(--primary-color)] font-extrabold">
-              Real-World Practice
-            </span>
-            <br></br>Build skills through hands-on projects and a professional
-            portfolio.
-          </p>
-          <p className=" text-[32px] text-center font-semibold w-[556px]">
-            <span className="text-[var(--primary-color)] font-extrabold">
-              Join a Creative Community
-            </span>
-            <br></br>Connect, share ideas, and collaborate with fellow
-            designers.
-          </p>
-        </div>
-      </div>
-      <div className="flex flex-col pt-[15vh] 2xl:pt-[30vh] w-full items-center justify-center relative">
-        <div className="w-[218px] 2xl:w-[268px] absolute top-[17%] left-0 z-0">
-          <Image
-            src="/asset/course-teacher-1.png"
-            alt="background image"
-            width={268}
-            height={265}
-            layout="responsive"
-            className="object-contain "
-          />
-        </div>
-        <div className="w-[131px] 2xl:w-[181px] absolute -top-[3%] left-[26%] z-0">
-          <Image
-            src="/asset/course-teacher-2.png"
-            alt="background image"
-            width={181}
-            height={185}
-            layout="responsive"
-            className="object-contain"
-          />
-        </div>
-        <div className=" w-[88px] 2xl:w-[138px] absolute top-[2%] right-[26%] z-0">
-          <Image
-            src="/asset/course-teacher-3.png"
-            alt="background image"
-            width={138}
-            height={145}
-            layout="responsive"
-            className="object-contain"
-          />
-        </div>
-        <div className="w-[155px] 2xl:w-[205px] absolute top-[20%] right-10 z-0">
-          <Image
-            src="/asset/course-teacher-4.png"
-            alt="background image"
-            width={205}
-            height={208}
-            layout="responsive"
-            className="object-contain"
-          />
-        </div>
-        <h3 className="text-white text-[64px] z-10 font-black leading-none">
-          OUR TEACHING STAFFS
-        </h3>
-        <div className="w-full flex items-end justify-center gap-10 3xl:h-[900px] lg:h-[500px]">
-          <div className="relative">
-            <div className={`${classHeadTeacher} `}>
-              <Image
-                src="/asset/course-number.png"
-                alt="background image"
-                layout="responsive"
-                width={1920}
-                height={6086}
-                className="object-cover  top-0 left-0 z-0 w-full"
-                priority
-              />
-            </div>
-            <div className={`${classBodyTeacher} `}></div>
-          </div>
-          <div className="relative">
-            <div className={`${classHeadTeacher} `}>
-              <Image
-                src="/asset/course-number.png"
-                alt="background image"
-                layout="responsive"
-                width={1920}
-                height={6086}
-                className="object-cover  top-0 left-0 z-0 w-full"
-                priority
-              />
-            </div>
 
-            <div className={`${classBodyTeacher} `}></div>
-          </div>
-
-          <div className="relative">
-            <div className={`${classHeadTeacher} `}>
-              <Image
-                src="/asset/course-number.png"
-                alt="background image"
-                layout="responsive"
-                width={1920}
-                height={6086}
-                className="object-cover  top-0 left-0 z-0 w-full"
-                priority
-              />
-            </div>
-
-            <div className={`${classBodyTeacher} `}></div>
-          </div>
+          <p className=" text-[32px] text-center font-semibold w-[80%]">
+            <span className="text-[var(--primary-color)] font-extrabold">
+              Connecting a Creative Community:
+            </span>
+            <br></br>Euréka is more than just a learning platform; it’s a
+            community for graphic designers where learners can network, share
+            ideas, and collaborate on real-world projects, creating an engaging
+            and connected learning experience.
+          </p>
+          <p className=" text-[32px] text-center font-semibold w-[80%]">
+            <span className="text-[var(--primary-color)] font-extrabold">
+              Personalized Learning Paths:
+            </span>
+            <br></br>Euréka designs flexible learning paths tailored to each
+            student’s goals, strengths, and pace. This ensures optimal skill
+            development that aligns with their specific needs.
+          </p>
         </div>
       </div>
     </div>

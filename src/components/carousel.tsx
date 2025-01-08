@@ -1,24 +1,48 @@
-import Image from "next/image";
-import React from "react";
+import React, { MouseEventHandler, useState } from "react";
 import Slider from "react-slick";
+import { ReviewCard } from "./card";
+import { v4 as uuidv4 } from "uuid";
 
 interface RootProps {
   data: ImageProps[] | null | undefined;
   customClass?: string;
+}
+interface ReviewProps {
+  data: ItemProps[] | null | undefined;
+  customClass?: string;
+}
+interface ItemProps {
+  img: string;
+  name: string;
+  course: string;
+  desc: string;
 }
 
 interface ImageProps {
   src: string;
 }
 
-const CarouselTransition: React.FC<RootProps> = ({ data, customClass }) => {
+interface ArrowProps {
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: MouseEventHandler<HTMLDivElement>;
+}
+
+export const CarouselTransition: React.FC<RootProps> = ({
+  data,
+  customClass,
+}) => {
   const settings = {
     dots: true,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    speed: 500,
+    speed: 1500,
     cssEase: "linear",
+    autoplay: true,
+    autoplaySpeed: 4000,
+    arrows: false, // Hides the arrows
+
     appendDots: (dots: any) => (
       <div>
         <ul
@@ -47,12 +71,11 @@ const CarouselTransition: React.FC<RootProps> = ({ data, customClass }) => {
   return (
     <div className={`h-[745px] w-full ${customClass}`}>
       <Slider {...settings}>
-        {data?.map((item, index) => (
-          <div className="h-500px w-full">
+        {data?.map((item) => (
+          <div key={uuidv4()} className="h-500px w-full">
             <img
               width={1920}
               height={745}
-              key={index}
               src={item.src}
               alt={item.src}
               className="object-cover"
@@ -63,4 +86,115 @@ const CarouselTransition: React.FC<RootProps> = ({ data, customClass }) => {
     </div>
   );
 };
-export default CarouselTransition;
+
+const NextArrow: React.FC<ArrowProps> = (props) => {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={`${className} bg-[var(--primary-color)] hover:bg-[var(--sub-color)] custom-arrow w-[79px] h-[79px] flex items-center justify-center rounded-full absolute bottom-0 right-[40%] left-auto top-auto z-10`}
+      onClick={onClick}
+    >
+      <svg
+        width="30"
+        height="52"
+        viewBox="0 0 30 52"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M2.71074 3.02588L25.5254 25.8405L2.71074 48.6552"
+          stroke="white"
+          strokeWidth="5"
+          strokeLinecap="round"
+        />
+      </svg>
+    </div>
+  );
+};
+
+const PrevArrow: React.FC<ArrowProps> = (props) => {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={`${className} bg-[var(--primary-color)] hover:bg-[var(--sub-color)] custom-arrow w-[79px] h-[79px] flex items-center justify-center rounded-full absolute bottom-0 right-auto left-[38%] top-auto z-10`}
+      onClick={onClick}
+    >
+      <svg
+        width="30"
+        height="52"
+        viewBox="0 0 30 52"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M27.2893 3.02588L4.47461 25.8405L27.2893 48.6552"
+          stroke="white"
+          strokeWidth="5"
+          strokeLinecap="round"
+        />
+      </svg>
+    </div>
+  );
+};
+
+export const CarouselReview: React.FC<ReviewProps> = ({
+  data,
+  customClass,
+}) => {
+  const [currentSlide, setCurrentSlide] = useState(1); // Slide hiện tại (bắt đầu từ 1)
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    cssEase: "linear",
+
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    beforeChange: (oldIndex: number, newIndex: number) => {
+      setCurrentSlide(newIndex + 1);
+    },
+    responsive: [
+      {
+        breakpoint: 1600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+  if (!data || data.length === 0) {
+    return <div>No images available</div>;
+  }
+  return (
+    <div
+      className={`h-[450px] w-full pl-[2%] relative custom-review ${customClass}`}
+    >
+      <Slider {...settings}>
+        {data?.map((item, index) => (
+          <ReviewCard
+            key={uuidv4()}
+            name={item.name}
+            img={item.img}
+            desc={item.desc}
+            course={item.course}
+          />
+        ))}
+      </Slider>
+      <div className="absolute bottom-0 right-[48%] text-[32px] font-bold text-white z-10">
+        {currentSlide} of {data.length}
+      </div>
+    </div>
+  );
+};

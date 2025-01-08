@@ -4,14 +4,15 @@ import { ReactNode } from "react";
 
 interface LayoutProps {
   children: ReactNode;
+  customClass: string;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children, customClass }) => {
   return (
     <>
-      <Header />
-      <main className="flex justify-center">{children}</main>
-      <Footer />
+      <Header customClass={customClass} />
+      <main className={`flex justify-center ${customClass}`}>{children}</main>
+      <Footer customClass={customClass} />
     </>
   );
 };

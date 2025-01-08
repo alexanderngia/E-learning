@@ -5,12 +5,15 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import Form from "./formAccount";
 
-const Header = () => {
+interface HeaderProps {
+  customClass: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ customClass }) => {
   const [openForm, setopenForm] = useState(false);
   const [openFormSignUp, setOpenFormSignUp] = useState(false);
 
   const { pathname } = useRouter();
-  console.log(pathname, "pathname");
   const isActive = (path: string) =>
     pathname === path
       ? "bg-[var(--primary-color)] text-white hover:bg-[var(--sub-color)]"
@@ -18,7 +21,9 @@ const Header = () => {
 
   const navItems = "px-[20px] py-[16px] rounded-[10px]";
   return (
-    <header className="flex justify-between items-center w-full pl-[7.7%] pr-[2%] h-[80px] bg-white z-10 absolute top-0 left-0">
+    <header
+      className={`flex justify-between items-center w-full pl-[7.7%] pr-[2%] h-[80px] bg-white z-10 absolute top-0 left-0 ${customClass}`}
+    >
       <Link href="/">
         <Image
           src="/asset/Logo.png"
