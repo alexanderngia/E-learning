@@ -110,13 +110,13 @@ const Blog = () => {
         </div>
         <div className="flex px-5 absolute bottom-[8%] right-[3%] gap-5">
           <Image
-            src="/asset/rating.png"
+            src="/asset/Rating.png"
             alt="background image"
             width={189} // Kích thước gốc của ảnh
             height={59} // Kích thước gốc của ảnh
           />
           <Image
-            src="/asset/comment.png"
+            src="/asset/Comment.png"
             alt="background image"
             width={271} // Kích thước gốc của ảnh
             height={59} // Kích thước gốc của ảnh
@@ -140,13 +140,13 @@ const Blog = () => {
                   />
                   <div className="flex gap-5 w-full">
                     <Image
-                      src="/asset/rating.png"
+                      src="/asset/Rating.png"
                       alt="background image"
                       width={189} // Kích thước gốc của ảnh
                       height={59} // Kích thước gốc của ảnh
                     />
                     <Image
-                      src="/asset/comment.png"
+                      src="/asset/Comment.png"
                       alt="background image"
                       width={271} // Kích thước gốc của ảnh
                       height={59} // Kích thước gốc của ảnh
