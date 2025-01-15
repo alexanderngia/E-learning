@@ -131,8 +131,10 @@ const VideoPage = () => {
                   />
                 </div>
                 <div className="flex flex-col h-full items-start justify-start">
-                  <p className="font-semibold">{video.title}</p>
-                  <p className="font-base whitespace-normal line-clamp-1">
+                  <p className="font-semibold text-lg mb-2">
+                    {video.id + `: ` + video.title}
+                  </p>
+                  <p className="font-base whitespace-normal line-clamp-3 text-xs">
                     {video.desc}
                   </p>
                 </div>
