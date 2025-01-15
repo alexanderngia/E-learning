@@ -10,6 +10,7 @@ interface RootProps {
 interface ReviewProps {
   data: ItemProps[] | null | undefined;
   customClass?: string;
+  arrowClass?: string;
 }
 interface ItemProps {
   img: string;
@@ -26,6 +27,7 @@ interface ArrowProps {
   className?: string;
   style?: React.CSSProperties;
   onClick?: MouseEventHandler<HTMLDivElement>;
+  arrowClass?: string;
 }
 
 export const CarouselTransition: React.FC<RootProps> = ({
@@ -69,7 +71,7 @@ export const CarouselTransition: React.FC<RootProps> = ({
     return <div>No images available</div>;
   }
   return (
-    <div className={`h-[745px] w-full ${customClass}`}>
+    <div className={` w-full ${customClass}`}>
       <Slider {...settings}>
         {data?.map((item) => (
           <div key={uuidv4()} className="h-500px w-full">
@@ -88,13 +90,14 @@ export const CarouselTransition: React.FC<RootProps> = ({
 };
 
 const NextArrow: React.FC<ArrowProps> = (props) => {
-  const { className, style, onClick } = props;
+  const { className, style, onClick, arrowClass } = props;
   return (
     <div
-      className={`${className} bg-[var(--primary-color)] hover:bg-[var(--sub-color)] custom-arrow w-[79px] h-[79px] flex items-center justify-center rounded-full absolute bottom-0 right-[40%] left-auto top-auto z-10`}
+      className={`${className} bg-[var(--primary-color)] hover:bg-[var(--sub-color)] custom-arrow w-[79px] h-[79px] flex items-center justify-center rounded-full absolute bottom-0 right-[38%] xl:right-[40%] 2xl:right-[40%]  left-auto top-auto z-10`}
       onClick={onClick}
     >
       <svg
+        className={arrowClass}
         width="30"
         height="52"
         viewBox="0 0 30 52"
@@ -113,13 +116,14 @@ const NextArrow: React.FC<ArrowProps> = (props) => {
 };
 
 const PrevArrow: React.FC<ArrowProps> = (props) => {
-  const { className, style, onClick } = props;
+  const { className, style, onClick, arrowClass } = props;
   return (
     <div
-      className={`${className} bg-[var(--primary-color)] hover:bg-[var(--sub-color)] custom-arrow w-[79px] h-[79px] flex items-center justify-center rounded-full absolute bottom-0 right-auto left-[38%] top-auto z-10`}
+      className={`${className} bg-[var(--primary-color)] hover:bg-[var(--sub-color)] custom-arrow w-[79px] h-[79px] flex items-center justify-center rounded-full absolute bottom-0 right-auto left-[34%] xl:left-[37%] 2xl:left-[38%] top-auto z-10`}
       onClick={onClick}
     >
       <svg
+        className={arrowClass}
         width="30"
         height="52"
         viewBox="0 0 30 52"
@@ -140,6 +144,7 @@ const PrevArrow: React.FC<ArrowProps> = (props) => {
 export const CarouselReview: React.FC<ReviewProps> = ({
   data,
   customClass,
+  arrowClass,
 }) => {
   const [currentSlide, setCurrentSlide] = useState(1); // Slide hiện tại (bắt đầu từ 1)
 
@@ -152,21 +157,14 @@ export const CarouselReview: React.FC<ReviewProps> = ({
     initialSlide: 0,
     cssEase: "linear",
 
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow arrowClass={arrowClass} />,
+    prevArrow: <PrevArrow arrowClass={arrowClass} />,
     beforeChange: (oldIndex: number, newIndex: number) => {
       setCurrentSlide(newIndex + 1);
     },
     responsive: [
       {
-        breakpoint: 1600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 600,
+        breakpoint: 1280,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -192,7 +190,7 @@ export const CarouselReview: React.FC<ReviewProps> = ({
           />
         ))}
       </Slider>
-      <div className="absolute bottom-0 right-[48%] text-[32px] font-bold text-white z-10">
+      <div className="absolute bottom-0 right-[48%] xl:right-[47%] text-[32px] font-bold text-white z-10">
         {currentSlide} of {data.length}
       </div>
     </div>

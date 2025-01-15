@@ -3,6 +3,8 @@ import Button from "./button";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Modal from "./modalForm";
+import { setSessionStorage } from "../helper/sessionStorage";
+
 interface FormProps {
   onClickClose: any;
   signUp?: boolean;
@@ -12,21 +14,19 @@ const Form: React.FC<FormProps> = ({ onClickClose, signUp }) => {
   const [password, setPassword] = useState("");
   const [modal, setModal] = useState(false);
   const [message, setMessage] = useState("false");
-
   const router = typeof window !== "undefined" ? useRouter() : null;
-  const navigateToPage = () => {
-    if (router) {
-      router.push("/account");
-    }
-  };
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (username === "admin" && password === "123456") {
       setModal(true);
       setMessage("Success");
+      setSessionStorage("user", { username: "admin", token: "123456" });
+
       setTimeout(() => {
-        navigateToPage();
+        if (router) {
+          router.push("/course");
+        }
       }, 2000);
     } else if (!username || !password) {
       setModal(true);

@@ -21,6 +21,11 @@ body {
   font-size: 16px;
 }
 
+iframe {
+  width: 100%;
+  height: 100%;
+}
+
 ::-webkit-scrollbar {
   width: 10px; /* Adjust the width of the scrollbar */
   height: 10px; /* Adjust the height of the horizontal scrollbar */
@@ -52,4 +57,53 @@ body {
 
 .custom-review .slick-slider {
   height: 500px;
+}
+
+.OriginBottomRotate90 {
+  writing-mode: bt-lr;
+  -webkit-appearance: slider-vertical;
+}
+
+.OriginBottomRotate90::-moz-range-track {
+  background: transparent;
+}
+
+.OriginBottomRotate90::-moz-range-thumb {
+  height: 12px;
+  width: 12px;
+  background: white;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+/* Custom styles for the vertical volume slider thumb */
+.custom-youtube::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #bd71ff;
+  cursor: pointer;
+  border: 2px solid white;
+  transition: all 0.2s ease;
+}
+
+.custom-youtube::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #bd71ff;
+  cursor: pointer;
+  border: 2px solid white;
+  transition: all 0.2s ease;
+}
+
+.custom-youtube::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.custom-youtube::-moz-range-thumb:hover {
+  transform: scale(1.2);
 }

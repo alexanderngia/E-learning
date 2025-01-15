@@ -2,7 +2,10 @@
 import { Card } from "@/components/card";
 import { CarouselReview } from "@/components/carousel";
 import InputComponent from "@/components/input";
+import useAuth from "@/helper/useAuth";
 import Image from "next/image";
+import { useRouter } from "next/router";
+
 import React, { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 const data = [
@@ -28,17 +31,17 @@ const data = [
 
 const dataTeacher = [
   {
-    img: "/asset/course-number.png",
+    img: "/asset/avatar.png",
     name: "Huy Poster",
     desc: "Designer/Influencer",
   },
   {
-    img: "/asset/course-number.png",
+    img: "/asset/avatar.png",
     name: "Royce Truong",
     desc: "Designer/VFX/Motion",
   },
   {
-    img: "/asset/course-number.png",
+    img: "/asset/avatar.png",
     name: "Alexander Nguyen",
     desc: "Developer",
   },
@@ -46,73 +49,73 @@ const dataTeacher = [
 
 const reviewData = [
   {
-    img: "/asset/course-number.png",
+    img: "/asset/avatar.png",
     name: "Huy Poster",
     course: "Graduated Basic Course",
     desc: "This course is truly amazing! I’ve learned so many foundational concepts and how to apply them in practice. The instructors explain everything clearly and are very supportive.",
   },
   {
-    img: "/asset/course-number.png",
+    img: "/asset/avatar.png",
     name: "Khoa Poster",
     course: "Graduated Basic Course",
     desc: "The practical exercises are incredibly helpful. Thanks to them, I’ve improved my skills and added some great pieces to my portfolio.",
   },
   {
-    img: "/asset/course-number.png",
+    img: "/asset/avatar.png",
     name: "Huy Poster",
     course: "Graduated Basic Course",
     desc: "This course is truly amazing! I’ve learned so many foundational concepts and how to apply them in practice. The instructors explain everything clearly and are very supportive.",
   },
   {
-    img: "/asset/course-number.png",
+    img: "/asset/avatar.png",
     name: "Khoa Poster",
     course: "Graduated Basic Course",
     desc: "The practical exercises are incredibly helpful. Thanks to them, I’ve improved my skills and added some great pieces to my portfolio.",
   },
   {
-    img: "/asset/course-number.png",
+    img: "/asset/avatar.png",
     name: "Huy Poster",
     course: "Graduated Basic Course",
     desc: "This course is truly amazing! I’ve learned so many foundational concepts and how to apply them in practice. The instructors explain everything clearly and are very supportive.",
   },
   {
-    img: "/asset/course-number.png",
+    img: "/asset/avatar.png",
     name: "Khoa Poster",
     course: "Graduated Basic Course",
     desc: "The practical exercises are incredibly helpful. Thanks to them, I’ve improved my skills and added some great pieces to my portfolio.",
   },
   {
-    img: "/asset/course-number.png",
+    img: "/asset/avatar.png",
     name: "Huy Poster",
     course: "Graduated Basic Course",
     desc: "This course is truly amazing! I’ve learned so many foundational concepts and how to apply them in practice. The instructors explain everything clearly and are very supportive.",
   },
   {
-    img: "/asset/course-number.png",
+    img: "/asset/avatar.png",
     name: "Khoa Poster",
     course: "Graduated Basic Course",
     desc: "The practical exercises are incredibly helpful. Thanks to them, I’ve improved my skills and added some great pieces to my portfolio.",
   },
   {
-    img: "/asset/course-number.png",
+    img: "/asset/avatar.png",
     name: "Huy Poster",
     course: "Graduated Basic Course",
     desc: "This course is truly amazing! I’ve learned so many foundational concepts and how to apply them in practice. The instructors explain everything clearly and are very supportive.",
   },
   {
-    img: "/asset/course-number.png",
+    img: "/asset/avatar.png",
     name: "Khoa Poster",
     course: "Graduated Basic Course",
     desc: "The practical exercises are incredibly helpful. Thanks to them, I’ve improved my skills and added some great pieces to my portfolio.",
   },
   {
-    img: "/asset/course-number.png",
+    img: "/asset/avatar.png",
     name: "Huy Poster",
     course: "Graduated Basic Course",
     desc: "This course is truly amazing! I’ve learned so many foundational concepts and how to apply them in practice. The instructors explain everything clearly and are very supportive.",
   },
   {
-    img: "/asset/course-number.png",
+    img: "/asset/avatar.png",
     name: "Khoa Poster",
     course: "Graduated Basic Course",
     desc: "The practical exercises are incredibly helpful. Thanks to them, I’ve improved my skills and added some great pieces to my portfolio.",
@@ -120,10 +123,13 @@ const reviewData = [
 ];
 
 const Course = () => {
+  useAuth();
+
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const carouselRefTeacher = useRef<HTMLDivElement | null>(null);
 
   const [isHovered, setIsHovered] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     let scrollInterval: NodeJS.Timeout | undefined;
@@ -153,8 +159,8 @@ const Course = () => {
     };
   }, [isHovered]);
 
-  const classHeadTeacher = `w-[332px] h-[332px] rounded-full -mb-[80px] z-10`;
-  const classBodyTeacher = `flex items-center justify-center text-center flex-col bg-white w-[540px] h-[300px] rounded-[80px] pt-[80px]`;
+  const classHeadTeacher = `w-[250px] h-[250px] 2xl:w-[332px] 2xl:h-[332px] rounded-full -mb-[80px] z-10`;
+  const classBodyTeacher = `flex items-center justify-center text-center flex-col bg-white w-[490px] h-[280px] 2xl:w-[540px] 2xl:h-[300px] rounded-[80px] pt-[80px]`;
   return (
     <div className="flex flex-col items-center w-full max-w-[1920px] gap-[100px]">
       <Image
@@ -312,7 +318,11 @@ const Course = () => {
         >
           <div className="flex gap-[40px] justify-center px-[60px] ">
             {[...data, ...data].map(({ img }, index) => (
-              <Card key={uuidv4()} img={img} />
+              <Card
+                onClick={() => router.push("/video")}
+                key={uuidv4()}
+                img={img}
+              />
             ))}
           </div>
         </div>
@@ -322,7 +332,7 @@ const Course = () => {
           REVIEW FROM LEARNERS
         </h3>
 
-        <CarouselReview data={reviewData} />
+        <CarouselReview data={reviewData} arrowClass="w-[20px]" />
       </div>
       <div className="flex flex-col bg-white w-full items-center justify-center relative p-[80px] pb-[120px] gap-20">
         <div className="flex justify-center items-center w-full gap-5">

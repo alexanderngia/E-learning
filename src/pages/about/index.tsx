@@ -1,4 +1,8 @@
+import useAuth from "@/helper/useAuth";
+
 const About = () => {
+  useAuth();
+
   return (
     <div className="flex items-center w-full max-w-[1920px]">
       <div className="flex flex-col ">About</div>
