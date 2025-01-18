@@ -17,7 +17,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`bg-[var(--primary-color)] text-white py-[6px] px-[50px] rounded-[24px] border-[3px] border-[#BD71FF] text-[20px] hover:bg-[var(--sub-color)] ${customClass}`}
+      className={`bg-[var(--primary-color)] text-white py-[6px] px-[50px] rounded-[24px] border-[3px] border-[var(--sub-color)] text-[20px] hover:bg-[var(--sub-color)] ${customClass}`}
     >
       {img && (
         <Image

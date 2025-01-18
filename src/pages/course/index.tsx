@@ -275,9 +275,8 @@ const Course = () => {
                         <Image
                           src={img}
                           alt="background image"
-                          layout="responsive"
-                          width={333}
-                          height={333}
+                          width={250}
+                          height={250}
                           className="object-cover top-0 left-0 z-0 w-full"
                           priority
                         />

@@ -84,9 +84,9 @@ const Modal: React.FC<ModalProps> = ({ message, onClose }) => {
               {message === "Error" && "FAILED !!"}
             </h4>
             <p className="text-gray-700 text-sm">
-              {message === "Success" && "Navigating to Account Page in 2s..."}
-              {message === "Empty" && "Vui lòng nhập thông tin!"}
-              {message === "Error" && "Sai thông tin đăng nhập!"}
+              {message === "Success" && "Navigating to Course Page..."}
+              {message === "Empty" && "Please enter the information!"}
+              {message === "Error" && "Incorrect login information!"}
             </p>
           </div>
         </div>

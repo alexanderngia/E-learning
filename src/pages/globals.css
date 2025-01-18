@@ -58,6 +58,9 @@ iframe {
 .custom-review .slick-slider {
   height: 500px;
 }
+.custom-course .slick-slider {
+  height: 100%;
+}
 
 .OriginBottomRotate90 {
   writing-mode: bt-lr;
