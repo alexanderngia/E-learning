@@ -285,7 +285,7 @@ export const CarouselCourse: React.FC<ReviewProps> = ({
               <h3 className="text-2xl font-bold z-10">{item.course}</h3>
             </div>
             <div className="relative bg-[var(--sub-color)] p-5 rounded-bl-3xl rounded-br-3xl z-10 w-full">
-              <div className="bg-purple-400 h-2 rounded-full w-full">
+              <div className="bg-white h-2 rounded-full w-full">
                 <div
                   className={`bg-purple-600 w-[${item.progress}%] h-full rounded-full`}
                 ></div>
