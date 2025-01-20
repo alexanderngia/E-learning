@@ -1,6 +1,7 @@
 "use client";
 import { Card } from "@/components/card";
 import { CarouselReview } from "@/components/carousel";
+import Footer from "@/components/footer";
 import InputComponent from "@/components/input";
 import useAuth from "@/helper/useAuth";
 import Image from "next/image";
@@ -123,6 +124,17 @@ const reviewData = [
 ];
 
 const Course = () => {
+  const footerProps = {
+    email: "info@eureka.com",
+    phone: "123-456-7890",
+    socialLinks: [
+      { platform: "/asset/fb.png", url: "#" },
+      { platform: "/asset/insta.png", url: "#" },
+      { platform: "/asset/gg.png", url: "#" },
+      { platform: "/asset/x.png", url: "#" },
+      // Add other social links
+    ],
+  };
   useAuth();
 
   const carouselRef = useRef<HTMLDivElement | null>(null);
@@ -162,13 +174,11 @@ const Course = () => {
   const classHeadTeacher = `w-[250px] h-[250px] 2xl:w-[332px] 2xl:h-[332px] rounded-full -mb-[80px] z-10`;
   const classBodyTeacher = `flex items-center justify-center text-center flex-col bg-white w-[490px] h-[280px] 2xl:w-[540px] 2xl:h-[300px] rounded-[80px] pt-[80px]`;
   return (
-    <div className="flex flex-col items-center w-full max-w-[1920px] gap-[100px]">
+    <div className="flex flex-col items-center w-full max-w-[1920px] gap-[100px] relative">
       <Image
         src="/asset/bg-course.png"
         alt="background image"
-        layout="responsive"
-        width={1920}
-        height={6086}
+        layout="fill"
         className="object-cover absolute top-0 left-0 z-0 w-full"
         priority
       />
@@ -371,6 +381,10 @@ const Course = () => {
           </p>
         </div>
       </div>
+      <Footer
+        {...footerProps}
+        customClass="flex relative w-full pb-3 px-5 gap-4 justify-between bg-transparent"
+      />
     </div>
   );
 };

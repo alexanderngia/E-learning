@@ -1,10 +1,12 @@
 import React from "react";
 import { Input } from "@material-tailwind/react";
 import Button from "./button";
-interface InputProps {}
-const InputComponent: React.FC<InputProps> = () => {
+interface InputProps {
+  customClass?: string;
+}
+const InputComponent: React.FC<InputProps> = ({ customClass }) => {
   return (
-    <div className="relative flex w-[500px]">
+    <div className={`relative flex w-[500px] ${customClass}`}>
       <input
         type="email"
         placeholder="Email Address"
